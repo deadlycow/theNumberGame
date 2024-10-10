@@ -1,13 +1,14 @@
 const listButtons = document.querySelector('#btn-list');
-// const randomNr = Math.floor(Math.random() * 9) + 1;
-const randomNr = 1;
-let gameMode2 = JSON.parse(localStorage.getItem('hard')) || false;
+const randomNr = Math.floor(Math.random() * 9) + 1;
+// const randomNr = 1;
+// let gameMode2 = JSON.parse(localStorage.getItem('hard')) || false;
+let gameMode2 = false;
 
 if (gameMode2) {
   listButtons.style.gridTemplateColumns = 'repeat(auto-fill, minmax(100px, 1fr))';
   createButtons(99);
 }
-else if (gameMode2) {
+else if (!gameMode2) {
   listButtons.style.gridTemplateColumns = 'repeat(3), 1fr';
   createButtons(9);
 }
@@ -27,7 +28,8 @@ newButtons.forEach(button => {
 
 document.querySelector('#harder').addEventListener('click', () => {
   location.reload();
-  localStorage.setItem('hard', JSON.stringify(true));
+  // localStorage.setItem('hard', JSON.stringify(true));
+  gameMode2 = true;
 })
 
 function createButtons(value) {
