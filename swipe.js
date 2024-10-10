@@ -2,6 +2,9 @@ let touchstartX = 0;
 let touchendX = 0;
 
 const restartButton = document.querySelector('#restart');
+const innerChev = document.querySelectorAll('.inner-chev');
+const spanButton = document.querySelector('#spanButton');
+
 let isButtonVisible = false;
 
 function handleSwipe() {
@@ -18,16 +21,21 @@ function handleSwipe() {
 function toggleButton() {
   isButtonVisible = !isButtonVisible;
   restartButton.style.transform = isButtonVisible ? 'translateX(0)' : 'translateX(-100%)';
-  restartButton.classList.toggle('rotate');
+  innerChev.forEach(chev => {
+    chev.classList.toggle('rotate');
+  })
 }
 
-document.addEventListener('touchstart', (e) => {
+document.addEventListener('touchstart', e => {
   touchstartX = e.changedTouches[0].screenX;
 });
 
-document.addEventListener('touchend', (e) => {
+document.addEventListener('touchend', e => {
   touchendX = e.changedTouches[0].screenX;
   handleSwipe();
 });
 
-restartButton.addEventListener('click', toggleButton);
+spanButton.addEventListener('click', e => {
+  e.stopPropagation();
+  toggleButton();
+});

@@ -45,7 +45,7 @@ a {
   border: none;
   border-radius: var(--border-r);
   box-shadow: var(--box-shadow);
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 270px;
   width: var(--btn-width);
@@ -54,13 +54,27 @@ a {
   transform: translateX(-100%);
   transition: transform 1s ease;
 
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+  span {
+    display: flex;
+    flex-direction: column;
+    width: 45px;
+    height: inherit;
+    position: absolute;
+    background-color: var(--clr-bg-secondary);
+    right: -45px;
+    border-top-right-radius: var(--border-r);
+    border-bottom-right-radius: var(--border-r);
+
+    img {
+      transform: rotate(180deg);
+      transition: transform;
+    }
+    img.rotate {
+      transform: rotate(0);
+    }
   }
 
-  &::after {
+  /* &::after {
     content: '';
     display: inline-block;
     background-color: var(--clr-bg-secondary);
@@ -76,7 +90,13 @@ a {
   }
   &.rotate::after {
     transform: rotate(180deg);
-  }
+  } */
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .container {
