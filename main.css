@@ -1,0 +1,167 @@
+@import url("styles/animation.css");
+@import url("/styles/tyhpografic.css");
+
+:root {
+  --clr-bg-primary: lightskyblue;
+  --clr-bg-secondary: #fff;
+  --clr-bg-clicked: #00000011;
+  --clr-bg-overlay: #00000080;
+
+  --btn-width: 100px;
+  --btn-height: 100px;
+
+  --box-shadow: 0 0 4px #00000031;
+
+  --border-r: .3em;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+  color: var(--clr-bg-secondary);
+  background-color: var(--clr-bg-primary);
+}
+
+a {
+  color: var(--clr-bg-secondary);
+}
+
+.place-in-center {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  position: relative;
+}
+
+.restart {
+  display: flex;
+  background-color: var(--clr-bg-primary);
+  border: none;
+  border-radius: var(--border-r);
+  box-shadow: var(--box-shadow);
+  position: absolute;
+  left: 0;
+  top: 270px;
+  width: var(--btn-width);
+  height: var(--btn-height);
+
+  transform: translateX(-100%);
+  transition: transform 1s ease;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  &::after {
+    content: '';
+    display: inline-block;
+    background-color: var(--clr-bg-secondary);
+    background-image: url(chevron-left-svgrepo-com.svg);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: var(--box-shadow);
+    width: 45px;
+    height: inherit;
+    position: absolute;
+    right: -45px;
+  }
+  &.rotate::after {
+    transform: rotate(180deg);
+  }
+}
+
+.container {
+  padding: 2rem;
+  text-align: center;
+
+}
+
+.win-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid var(--clr-bg-secondary);
+  background-color: var(--clr-bg-primary);
+  width: 18em;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  z-index: 10;
+  position: fixed;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+
+  gap: 1rem;
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: var(--clr-bg-overlay);
+  z-index: 9;
+}
+
+.container-flex {
+  display: flex;
+  justify-content: center;
+}
+
+.btn {
+  width: var(--btn-width);
+  height: var(--btn-height);
+  color: var(--clr-bg-secondary);
+  font-size: 3em;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  box-shadow: var(--box-shadow);
+  border-radius: var(--border-r);
+}
+
+.btn-red {
+  color: red;
+  font-size: 1.5em;
+  font-weight: 700;
+  border: none;
+  background-color: black;
+  padding: .4em;
+  border-radius: var(--border-r);
+  cursor: pointer;
+
+  &:active {
+    background-color: var(--clr-bg-overlay);
+  }
+}
+
+.clicked {
+  background-color: var(--clr-bg-clicked);
+}
+
+ul {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 100px;
+  gap: .8rem;
+  padding: 1rem;
+
+  li {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
