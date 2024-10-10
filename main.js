@@ -1,8 +1,8 @@
+let a = JSON.parse(localStorage.getItem('quantity')) || 9;
 const listButtons = document.querySelector('#btn-list');
-// const randomNr = Math.floor(Math.random() * 9) + 1;
-const randomNr = 1;
+const randomNr = Math.floor(Math.random() * a) + 1;
 let gameMode2 = JSON.parse(localStorage.getItem('hard')) || false;
-// let gameMode2 = false;
+console.log(`Just so we can cheat: ${randomNr}`);
 
 
 
@@ -69,9 +69,11 @@ function theyWon() {
 document.querySelector('#harder').addEventListener('click', () => {
   location.reload();
   localStorage.setItem('hard', JSON.stringify(true));
+  localStorage.setItem('quantity', JSON.stringify(199));
 })
 
 resetGame.addEventListener('click', (e) => {
   localStorage.removeItem('hard');
+  localStorage.removeItem('quantity');
   location.reload();
 });
