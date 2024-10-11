@@ -32,6 +32,11 @@ a {
   color: var(--clr-bg-secondary);
 }
 
+.padding-bottom {
+  padding-bottom: .5rem;
+  font-size: .875rem;
+}
+
 .place-in-center {
   display: grid;
   place-items: center;
@@ -73,6 +78,14 @@ a {
       transform: rotate(0);
     }
   }
+}
+
+.restart-mini {
+  display: flex;
+  background-color: var(--clr-bg-primary);
+  border: none;
+  width: calc(var(--btn-width) / 2);
+  height: calc(var(--btn-height) / 2);
 }
 
 img {
@@ -146,6 +159,19 @@ img {
   &:active {
     background-color: var(--clr-bg-overlay);
   }
+}
+
+.btn-cookie {
+  background-image: url(cookie-svgrepo-com.svg);
+  background-size: 50px;
+  background-repeat: no-repeat;
+  padding-left: 4rem;
+  height: 3rem;
+  border: none;
+  object-fit: contain;
+  background-color: transparent;
+  font-size: 1rem;
+  color: var(--clr-bg-secondary);
 }
 
 .clicked {

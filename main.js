@@ -1,6 +1,9 @@
 let a = JSON.parse(localStorage.getItem('quantity')) || 9;
 const listButtons = document.querySelector('#btn-list');
+
 const randomNr = Math.floor(Math.random() * a) + 1;
+// const randomNr = '1';
+
 let gameMode2 = JSON.parse(localStorage.getItem('hard')) || false;
 console.log(`Just so we can cheat: ${randomNr}`);
 
@@ -38,9 +41,8 @@ newButtons.forEach(button => {
     e.preventDefault;
     button.classList.add('clicked');
 
-    if (button.textContent == randomNr) {
-      theyWon();
-    }
+    if (button.textContent == randomNr) theyWon(gameMode2);
+
   })
 })
 
@@ -58,19 +60,37 @@ function createButtons(value) {
   }
 }
 
-function theyWon() {
-  document.querySelector('.win-container').classList.add('animation');
+const winContainer = document.querySelector('.win-container');
 
-  const overlay = document.querySelector('.overlay');
-  overlay.classList.add('overlay');
-  overlay.style.display = 'block';
+function theyWonHardmode() {
+  // remove items to display final win
+  winContainer.querySelectorAll('p').forEach(i => { i.remove(); });
+  winContainer.querySelector('#harder').removeEventListener('click', hardModeReload);
+
+  // makes changes to final win screen
+  winContainer.querySelector('h2').textContent = 'You WIN hardmode';
+  winContainer.lastElementChild.textContent = 'here\'s a cookie';
+  winContainer.lastElementChild.classList.replace('btn-red', 'btn-cookie');
+  winContainer.appendChild(document.querySelector('#restart'));
+  winContainer.lastElementChild.classList.replace('restart', 'restart-mini');
+
 }
 
-document.querySelector('#harder').addEventListener('click', () => {
+function theyWon(value) {
+  winContainer.classList.add('animation');
+
+  if (value) theyWonHardmode();
+
+  document.querySelector('.overlay').style.display = 'block';
+}
+
+function hardModeReload() {
   location.reload();
   localStorage.setItem('hard', JSON.stringify(true));
   localStorage.setItem('quantity', JSON.stringify(199));
-})
+}
+
+document.querySelector('#harder').addEventListener('click', hardModeReload);
 
 resetGame.addEventListener('click', (e) => {
   localStorage.removeItem('hard');
